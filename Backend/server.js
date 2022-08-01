@@ -7,7 +7,7 @@ const mongoose = require('mongoose')
 require('./app/models/user.model')
 // const db = require('./app/models/server');
 const db = require('./app/config/db.config')
-const users = require('./app/routes/users.route')
+const users = require('./app/routes/auth.routes')
 const corsOptions ={
 
     origin: "http://localhost:8081"

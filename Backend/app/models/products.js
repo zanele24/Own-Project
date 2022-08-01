@@ -10,6 +10,12 @@ const productsSchema = new mongoose.Schema({
     productDesc:{
         type: String
     },
+    Price:{
+        type:Number
+    },
+    Unit:{
+        type:Number
+    }
    
 })
 var products = new mongoose.model('products', productsSchema);

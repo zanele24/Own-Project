@@ -1,0 +1,13 @@
+.navbar{
+    background-color: #0F1521;
+    height: 50%;
+}
+.collapse{
+    margin-left: 65%;
+}
+.nav-link{
+    color: white;
+}
+.navbar-nav{
+   justify-content: space-between;
+}
