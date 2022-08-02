@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {GalleriaModule} from 'primeng/galleria';
 
 @Component({
   selector: 'app-home',

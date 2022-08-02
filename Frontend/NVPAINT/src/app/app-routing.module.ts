@@ -4,7 +4,7 @@ import { HomeComponent } from './Components/Private/home/home.component';
 import { LandingComponent } from './Components/Private/landing/landing.component';
 import { SigninComponent } from './Components/Private/signin/signin.component';
 import { SignupComponent } from './Components/Private/signup/signup.component';
-import {GalleriaModule} from 'primeng/galleria';
+
 
 const routes: Routes = [
   {path: '', component:LandingComponent},
