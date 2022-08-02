@@ -1,0 +1,22 @@
+{
+    "data":[
+        {
+            "previewImageSrc": "assets/showcase/images/image1.jpeg",
+            "thumbnailImageSrc": "assets/showcase/images/image1.jpeg",
+            "alt": "Description for Image 1",
+            "title": "Title 1"
+        },
+        {
+            "previewImageSrc": "assets/showcase/images/image2.jpeg",
+            "thumbnailImageSrc": "assets/showcase/images/image2.jpeg",
+            "alt": "Description for Image 2",
+            "title": "Title 2"
+        },
+        {
+            "previewImageSrc": "assets/showcase/images/image3.jpeg",
+            "thumbnailImageSrc": "assets/showcase/images/image3.jpeg",
+            "alt": "Description for Image 3",
+            "title": "Title 3"
+        }
+    ]
+}
