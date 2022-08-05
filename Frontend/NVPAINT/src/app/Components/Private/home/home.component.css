@@ -1,4 +1,4 @@
-/* .overflow-x-auto{
+.overflow-x-auto{
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 5%;
@@ -15,7 +15,11 @@ h2{
 .add{
     float:right;
     margin-right: 160px;
+    font-weight: bold;
 }
 button{
     margin-left: 5px;
-} */
+}
+.dash{
+    margin-top: 100px;
+}
