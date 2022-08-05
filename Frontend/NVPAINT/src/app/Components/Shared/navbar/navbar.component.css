@@ -2,11 +2,16 @@
     background-color: #0F1521;
     height: 50%;
 }
+a:hover{
+    background-color: rgba(255, 255, 255, 0.246);
+    border-radius: 5px;
+}
 .collapse{
     margin-left: 65%;
 }
 .nav-link{
     color: white;
+    font-weight: 20%;
 }
 .navbar-nav{
    justify-content: space-between;

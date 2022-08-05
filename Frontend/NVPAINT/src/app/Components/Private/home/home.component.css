@@ -1,4 +1,4 @@
-.overflow-x-auto{
+/* .overflow-x-auto{
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 5%;
@@ -8,7 +8,14 @@
 }
 h2{
     text-align: center;
-    font-size: large;
+    font-size: 150%;
     margin-top: 5%;
+    color: #0F1521;
 }
-
+.add{
+    float:right;
+    margin-right: 160px;
+}
+button{
+    margin-left: 5px;
+} */
