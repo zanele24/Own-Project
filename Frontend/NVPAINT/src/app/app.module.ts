@@ -9,6 +9,8 @@ import { LandingComponent } from './Components/Private/landing/landing.component
 import { HomeComponent } from './Components/Private/home/home.component';
 import { SignupComponent } from './Components/Private/signup/signup.component';
 import { SigninComponent } from './Components/Private/signin/signin.component';
+import { ModalComponent } from './Components/Private/modal/modal.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,11 +20,13 @@ import { SigninComponent } from './Components/Private/signin/signin.component';
     LandingComponent,
     HomeComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

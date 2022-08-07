@@ -23,3 +23,13 @@ button{
 .dash{
     margin-top: 100px;
 }
+
+@media screen and (min-width:320px) and (max-width: 480px) {
+    .overflow-x-auto{
+        width: 300px;
+    }
+    .add{
+       float: right;
+       margin-right: 100px;
+    }
+}

@@ -8,6 +8,8 @@ require('./app/models/user.model')
 // const db = require('./app/models/server');
 const db = require('./app/config/db.config')
 const users = require('./app/routes/auth.routes')
+const products = require('./app/routes/product.routes')
+
 const corsOptions ={
 
     origin: "http://localhost:8081"
@@ -38,6 +40,7 @@ app.get("/", (req, res) => {
   });
 
 app.use('/api',users);
+app.use('/api',products);
 
 // set port, listen for requests
 const PORT = 8080;
