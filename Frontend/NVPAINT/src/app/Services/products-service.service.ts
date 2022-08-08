@@ -11,17 +11,21 @@ export class ProductsServiceService {
 
   constructor(private http: HttpClient) { }
 
-  public addProduct(productData: any){
-    const product ={
-      product_name: productData,
-      product_desc: productData,
-      Price: productData,
-      Unit: productData
+  // public addProduct(productData: any){
+  //   const product ={
+  //     product_name: productData,
+  //     product_desc: productData,
+  //     Price: productData,
+  //     Unit: productData
 
-    };
-   return this.http.post(baseURL+"/add",productData)
-  }
+  //   };
+  //  return this.http.post(baseURL+"/add",productData)
+  // }
   
+  addProduct(productName: any ,productDesc: any, Price: any,Liter:any,Unit: any ){
+    return this.http.post(baseURL+"/add", { productName,productDesc,Price,Liter,Unit })
+  }
+
   viewProduct(id: any){
     this.http.get(baseURL+"/view/",id)
   }

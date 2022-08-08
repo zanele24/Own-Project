@@ -12,7 +12,7 @@ const products = require('./app/routes/product.routes')
 
 const corsOptions ={
 
-    origin: "http://localhost:8081"
+    origin: "http://localhost:4200"
 }
 
 

@@ -11,6 +11,7 @@ import { SignupComponent } from './Components/Private/signup/signup.component';
 import { SigninComponent } from './Components/Private/signin/signin.component';
 import { ModalComponent } from './Components/Private/modal/modal.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

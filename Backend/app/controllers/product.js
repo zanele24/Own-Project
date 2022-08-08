@@ -3,10 +3,10 @@ const Product = require('../models/products')
 
 //ADD PRODUCT AND SAVE
 exports.create = async (req, res) => {
-  if (!req.body.productName && !req.body.productDesc && !req.body.Price && !req.body.Liter && !req.body.Unit)
-  {
-    res.status(400).json({ message: "fields can not be empty!" });
-  }
+  // if (!req.body.productName && !req.body.productDesc && !req.body.Price && !req.body.Liter && !req.body.Unit)
+  // {
+  //   res.status(400).json({ message: "fields can not be empty!" });
+  // }
 
   const product = new Product({
         productName: req.body.productName,
@@ -15,7 +15,6 @@ exports.create = async (req, res) => {
         Liter:req.body.Liter,
         Unit: req.body.Unit,
   });
-
    // ADD PRODUCT TO THE DATABASE
   await product.save()
   .then(data => {
