@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductsServiceService } from 'src/app/Services/products-service.service';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-modal',
@@ -22,7 +23,7 @@ export class ModalComponent implements OnInit {
   isSuccessful = false;
   submitted = false;
 
-  constructor(private products: ProductsServiceService, private router :Router, private formBuilder: FormBuilder,) { }
+  constructor(private products: ProductsServiceService, private router :Router, private formBuilder: FormBuilder,private messageService: MessageService) { }
 
   ngOnInit(): void {
 
@@ -42,7 +43,12 @@ export class ModalComponent implements OnInit {
 
   saveData(){
     this.submitted = true
-    
+
+    if(this.Form.invalid)
+      {
+        this.showError()
+        return 
+      }
     let productList= {
       product_name: this.Form.value.product_name,
       product_desc: this.Form.value.product_desc,
@@ -57,28 +63,26 @@ export class ModalComponent implements OnInit {
       this.Form.value.Price, 
       this.Form.value.Liters, 
       this.Form.value.Unit).subscribe()
+      // this.isSuccessful =true
+      this.showSuccess()
+     
 
       console.log(productList)
-
-      if(this.Form.value.product_name === "" || this.Form.value.product_name == null 
-      || this.Form.value.product_desc === "" || this.Form.value.product_desc == null 
-      || this.Form.value.Price === "" || this.Form.value.Price == null
-      || this.Form.value.Liters === "" || this.Form.value.Liters == null 
-      || this.Form.value.Unit === "" || this.Form.value.Unit == null 
-      )
-      {
-        alert("please input all fields!!")
-        return false
-      }
-      return true
-
-      
-
+      // return true
+       this.Form.reset();
   }
 
   deleteProduct(){
     this.products.deleteProduct
   }
 
+
+  showError() {
+    this.messageService.add({severity:'error', summary: 'Error', detail: 'Fields Should not be Empty'});
+}
+
+showSuccess() {
+  this.messageService.add({severity:'success', summary: 'Success', detail: 'Product is Added'});
+}
 
 }

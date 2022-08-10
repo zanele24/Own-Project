@@ -1,12 +1,12 @@
-.p-4 {
-    margin-left: 400px;
-    margin-right: 400px;
-    margin-top: 150px;
-    height: 500px;
+.p-4{
+   margin: 10px;
 }
-
-button{
-   margin-left: 340px;
+.p-6{
+    margin-left: 50px;
+ }
+.p-8{
+    margin-top: 70;
+   
 }
 img{
     height: 100px;
