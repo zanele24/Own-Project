@@ -4,6 +4,7 @@ import { FormControl, FormGroup, FormBuilder, Validators, AbstractControl} from 
 import { Router } from '@angular/router';
 import { ProductsServiceService } from 'src/app/Services/products-service.service';
 import {MessageService} from 'primeng/api';
+import { Productid } from '../productid';
 
 @Component({
   selector: 'app-modal',
@@ -72,17 +73,15 @@ export class ModalComponent implements OnInit {
        this.Form.reset();
   }
 
-  deleteProduct(){
-    this.products.deleteProduct
-  }
-
 
   showError() {
     this.messageService.add({severity:'error', summary: 'Error', detail: 'Fields Should not be Empty'});
-}
+ }
 
-showSuccess() {
+ showSuccess() {
   this.messageService.add({severity:'success', summary: 'Success', detail: 'Product is Added'});
-}
+ }
 
+
+ 
 }

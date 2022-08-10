@@ -7,11 +7,12 @@
          <h2>DASHBOARD</h2>
     </div>
     <div class="add">
-      ADD PRODUCT
+      <!-- ADD PRODUCT
       <button class="inline-flex items-center p-1 text-sm font-medium text-#0F1521-500 bg-white rounded-full border border-#0F1521-300 focus:outline-none hover:bg-#0F1521-100 focus:ring-4 focus:ring-gray-200 dark:bg-#0F1521-800 dark:text-#0F1521-400 dark:border-#0F1521-600 dark:hover:bg-#0F1521-700 dark:hover:border-#0F1521-600 dark:focus:ring-#0F1521-700" type="button" 
         data-modal-toggle="ProductModal" onsubmit="saveData()">
         <svg class="w-6 h-6"  fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-    </button>
+    </button> -->
+    <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"  (click)="openNew()" ></button>
   </div>
 <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
   <table class="w-full text-sm text-left text-black-500 dark:text-black-400">
@@ -67,7 +68,7 @@
                 <!-- <button class="inline-flex items-center p-1 text-sm font-medium text-yellow-500 bg-white rounded-full border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button" data-modal-toggle="editModal">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                 </button> -->
-                <button pButton pRipple icon="pi pi-edit" class="p-button-rounded p-button-blue" id= "viewModal" data-modal-toggle="viewModal" > 
+                <button pButton pRipple icon="pi pi-edit" class="p-button-rounded p-button-blue" (click)="editProduct(products)" > 
                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                 </button>
                
@@ -83,4 +84,53 @@
     </tbody>
   </table>  
 </div>
+
+<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+      <div class="field">
+          <label for="name">Name</label>
+          <input type="text" pInputText id="name" style="width: 400px," [(ngModel)] = "products.product_name" [ngClass]="{'is-invalid': submitted && f['product_name'].errors}" />
+          <div *ngIf="submitted && f['product_name'].errors"class="invalid-feedback">
+            <div *ngIf="f['product_name'].errors['required']" style="color: red; font-size: small;"> product name is required</div>
+          </div>
+      </div>
+      <div class="field">
+          <label for="description">Description</label>
+          <textarea id="description" pInputTextarea  [(ngModel)] = "products.product_desc" [ngClass]="{'is-invalid': submitted && f['product_desc'].errors}"  required rows="3" cols="20"></textarea>
+          <div *ngIf="submitted && f['product_desc'].errors"class="invalid-feedback">
+            <div *ngIf="f['product_desc'].errors['required']" style="color: red; font-size: small;"> product description is required</div>
+        </div>
+      </div>
+
+      <div class="formgrid grid">
+          <div class="field col">
+              <label for="price">Price</label>
+              <p-inputNumber id="price" [(ngModel)] = "products.price" [ngClass]="{'is-invalid': submitted && f['Price'].errors}" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+              <div *ngIf="submitted && f['Price'].errors"class="invalid-feedback">
+                <div *ngIf="f['Price'].errors['required']" style="color: red; font-size: small;"> Price is required</div>
+            </div>
+          </div>
+          <div class="field col">
+              <label for="quantity">Measurements in Liters(L)</label>
+              <p-inputNumber id="Liter" [(ngModel)] = "products.Liters" [ngClass]="{'is-invalid': submitted && f['Liters'].errors}"></p-inputNumber>
+              <div *ngIf="submitted && f['Liters'].errors"class="invalid-feedback">
+                <div *ngIf="f['Liters'].errors['required']" style="color: red; font-size: small;"> Liters are required</div>
+            </div>
+          </div>
+          <div class="field col">
+            <label for="quantity">Quantity</label>
+            <p-inputNumber id="quantity"  [(ngModel)] = "products.Unit" [ngClass]="{'is-invalid': submitted && f['Unit'].errors}"></p-inputNumber>
+            <div *ngIf="submitted && f['Unit'].errors"class="invalid-feedback">
+              <div *ngIf="f['Unit'].errors['required']" style="color: red; font-size: small;"> Units are required</div>
+          </div>
+        </div>
+      </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+      <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+      <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveData()"></button>
+  </ng-template>
+</p-dialog>
+
 

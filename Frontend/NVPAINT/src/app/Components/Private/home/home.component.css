@@ -17,12 +17,6 @@ h2{
     margin-right: 160px;
     font-weight: bold;
 }
-button{
-    margin-left: 5px;
-}
-.dash{
-    margin-top: 100px;
-}
 
 @media screen and (min-width:320px) and (max-width: 480px) {
     .overflow-x-auto{

@@ -21,6 +21,11 @@ import { MessagesModule } from 'primeng/messages';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import {DialogModule} from 'primeng/dialog';
+import {InputTextModule} from 'primeng/inputtext';
+import {InputNumberModule} from 'primeng/inputnumber';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+
 
 @NgModule({
   declarations: [
@@ -47,6 +52,10 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
     MessagesModule,
     ToastModule,
     DynamicDialogModule,
+    DialogModule,
+    InputTextModule,
+    InputNumberModule,
+    InputTextareaModule,
   ],
   providers: [ MessageService, ConfirmationService],
   bootstrap: [AppComponent]
