@@ -4,7 +4,7 @@ import { FormControl, FormGroup, FormBuilder, Validators, AbstractControl} from 
 import { Router } from '@angular/router';
 import { ProductsServiceService } from 'src/app/Services/products-service.service';
 import {MessageService} from 'primeng/api';
-import { Productid } from '../productid';
+import { Productid } from '../../../Interface/productid';
 
 @Component({
   selector: 'app-modal',
@@ -58,14 +58,9 @@ export class ModalComponent implements OnInit {
       unit: this.Form.value.Unit
     }
 
-    this.products.addProduct(
-      this.Form.value.product_name, 
-      this.Form.value.product_desc, 
-      this.Form.value.Price, 
-      this.Form.value.Liters, 
-      this.Form.value.Unit).subscribe()
-      // this.isSuccessful =true
-      this.showSuccess()
+    // this.products.addProduct(productList).subscribe()
+    //   // this.isSuccessful =true
+     
      
 
       console.log(productList)

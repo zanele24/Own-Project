@@ -8,7 +8,18 @@
     margin-top: 70;
    
 }
+.bg-white{
+    margin-top: 100px;
+    margin-left: 400px;
+    margin-right: 400px;
+    
+}
 img{
     height: 100px;
    margin-left: 250px;
+}
+@media screen and (min-width:320px) and (max-width: 480px) {
+    .bg-white{
+        margin-right: 10px;
+    }
 }

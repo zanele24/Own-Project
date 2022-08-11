@@ -26,6 +26,8 @@ import {InputTextModule} from 'primeng/inputtext';
 import {InputNumberModule} from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 
+import { ProductsServiceService } from 'src/app/Services/products-service.service';
+
 
 @NgModule({
   declarations: [
@@ -56,8 +58,9 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     InputTextModule,
     InputNumberModule,
     InputTextareaModule,
+    FormsModule
   ],
-  providers: [ MessageService, ConfirmationService],
+  providers: [ ProductsServiceService,MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

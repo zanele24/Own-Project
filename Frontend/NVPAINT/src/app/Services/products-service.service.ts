@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Productid } from '../Components/Private/productid';
+import { Productid } from '../Interface/productid';
 
 const baseURL = environment.baseURL
 @Injectable({
@@ -30,12 +30,13 @@ export class ProductsServiceService {
    return this.http.get(baseURL+"view")
   }
 
-  viewProduct(id: any): void{
-    this.http.get(baseURL+"view/",id)
+  viewProduct(id: Productid){
+     return this.http.get(`${baseURL}view/,${id}`)
+    
   }
 
   updateProduct(id : any){
-    this.http.put(baseURL+"update/",id)
+    this.http.put(baseURL+"update/",id) 
   }
 
   deleteProduct(id:Productid){

@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators,FormsModule } from '@angular/forms';
 import { ProductsServiceService } from 'src/app/Services/products-service.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api'; 
-import { Productid } from '../productid';
-import { Router } from '@angular/router';
+import { Productid } from '../../../Interface/productid';
 
 
 @Component({
@@ -26,15 +25,15 @@ export class HomeComponent implements OnInit {
 
 
   products: any;
-  currentIndex = -1;
-  currentTutorial= {}
+  // id : any;
   productDialog: boolean = false;
   submitted = false;
+  prod :any;
+  
 
   constructor(private productsservice: ProductsServiceService,
     private messageService: MessageService,  
     private confirmationService: ConfirmationService,
-    private router :Router, 
     private formBuilder: FormBuilder,) { }
 
   ngOnInit(): void {
@@ -46,9 +45,7 @@ export class HomeComponent implements OnInit {
       Liters: ['', Validators.required],
       Unit: ['', Validators.required],
     });
-
-
-   this.get()
+    this.get()
   }
 
   get f(): { [key: string]: AbstractControl } {
@@ -56,9 +53,10 @@ export class HomeComponent implements OnInit {
   }
 
   openNew() {
+    this.prod = {};
     this.submitted = false;
     this.productDialog = true;
-}
+  }
 
 
   //FUNCTION TO SAVE DATA ON THE DATABASE (SAVE THE PRODUCT)
@@ -66,31 +64,29 @@ export class HomeComponent implements OnInit {
     this.submitted = true
 
     if(this.Form.invalid)
-      {
-        this.showError()
-        return 
-      }
-    let productList= {
-      product_name: this.Form.value.product_name,
-      product_desc: this.Form.value.product_desc,
-      price: this.Form.value.Price,
-      liters: this.Form.value.Liters,
-      unit: this.Form.value.Unit
+    {
+      this.showError();
+      return 
     }
+    // let prodList = {
+    //   product_name: this.Form.value.product_name,
+    //   product_desc: this.Form.value.product_desc,
+    //   Price: this.Form.value.Price ,
+    //   Liters: this.Form.value.Liters,
+    //   Unit: this.Form.value.Unit
+    // }
 
-    this.products.addProduct(
-      this.Form.value.product_name, 
-      this.Form.value.product_desc, 
-      this.Form.value.Price, 
-      this.Form.value.Liters, 
-      this.Form.value.Unit).subscribe()
-      // this.isSuccessful =true
-      this.showSuccess()
-     this.productDialog = true;
-
-      console.log(productList)
-      // return true
-       this.Form.reset();
+    this.productsservice.addProduct(
+      this.Form.value.product_name,
+      this.Form.value.product_desc,
+      this.Form.value.Price ,
+      this.Form.value.Liters,
+      this.Form.value.Unit).subscribe(()=>{
+        // this.Form.reset()
+        this.productDialog = false;
+        this.get()
+      })
+      this.showSuccess();
   }
 
 
@@ -108,6 +104,7 @@ export class HomeComponent implements OnInit {
     return this.productsservice.viewAll().subscribe({
       next:data => {
         this.products = data
+        this.products._id = this.prod
       }
     });
   }
@@ -120,14 +117,10 @@ export class HomeComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.productsservice.deleteProduct(details).subscribe({
-          next:data =>{
-            console.log(data)
-            
-          }
+        this.productsservice.deleteProduct(details).subscribe( ()=>{
+          this. get()
         })
         
-     this.get()
         this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Deleted', life: 3000})
       },
       reject: () => {
@@ -138,9 +131,14 @@ export class HomeComponent implements OnInit {
 
 
   //FUNCTION TO EDIT/UPDATE THE PRODUCT
-  editProduct(product: Productid) {
-    this.products = {...product};
+  editProduct(details:Productid) {
     this.productDialog = true;
+    this.productsservice.viewProduct(details).subscribe(() =>{
+      this.get()
+    })
+    console.log(details)
+    // this.id = this.prod;
+
   }
 
   hideDialog() {
@@ -149,7 +147,12 @@ export class HomeComponent implements OnInit {
 }
 
 
-
+viewById(details:Productid){
+  this.productsservice.viewProduct(details).subscribe(() =>{
+    this.get()
+  })
+  console.log(details)
+}
   // delete(id:any){
     
   //   console.log("delete"+ id)
