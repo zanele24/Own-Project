@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Productid } from '../Interface/productid';
+import { Productslist } from '../Interface/productslist';
+import { UpdateModule } from '../update/update.module';
 
 const baseURL = environment.baseURL
 @Injectable({
@@ -11,17 +13,6 @@ export class ProductsServiceService {
 
 
   constructor(private http: HttpClient) { }
-
-  // public addProduct(productData: any){
-  //   const product ={
-  //     product_name: productData,
-  //     product_desc: productData,
-  //     Price: productData,
-  //     Unit: productData
-
-  //   };
-  //  return this.http.post(baseURL+"/add",productData)
-  // }
   
   addProduct(productName: any ,productDesc: any, Price: any,Liter:any,Unit: any ){
     return this.http.post(baseURL+"add", { productName,productDesc,Price,Liter,Unit })
@@ -30,13 +21,13 @@ export class ProductsServiceService {
    return this.http.get(baseURL+"view")
   }
 
-  viewProduct(id: Productid){
-     return this.http.get(`${baseURL}view/,${id}`)
+  viewProduct(id: UpdateModule){
+     return this.http.get(`${baseURL}view/,${id._id}`)
     
   }
 
-  updateProduct(id : any){
-    this.http.put(baseURL+"update/",id) 
+  updateProduct(id: UpdateModule){
+    return this.http.get(`${baseURL}update/,${id._id}`)
   }
 
   deleteProduct(id:Productid){

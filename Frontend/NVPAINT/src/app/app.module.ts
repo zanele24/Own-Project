@@ -7,12 +7,11 @@ import { FooterComponent } from './Components/Shared/footer/footer.component';
 import { NavbarComponent } from './Components/Shared/navbar/navbar.component';
 import { LandingComponent } from './Components/Private/landing/landing.component';
 import { HomeComponent } from './Components/Private/home/home.component';
-import { SignupComponent } from './Components/Private/signup/signup.component';
-import { SigninComponent } from './Components/Private/signin/signin.component';
 import { ModalComponent } from './Components/Private/modal/modal.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AlertComponent } from './Components/Shared/alert/alert.component';
+import { ProductsServiceService } from 'src/app/Services/products-service.service';
+
 
 //PrimeNG imports
 import { ConfirmationService } from 'primeng/api';
@@ -25,8 +24,8 @@ import {DialogModule} from 'primeng/dialog';
 import {InputTextModule} from 'primeng/inputtext';
 import {InputNumberModule} from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CardModule, } from 'primeng/card';
 
-import { ProductsServiceService } from 'src/app/Services/products-service.service';
 
 
 @NgModule({
@@ -36,10 +35,7 @@ import { ProductsServiceService } from 'src/app/Services/products-service.servic
     NavbarComponent,
     LandingComponent,
     HomeComponent,
-    SignupComponent,
-    SigninComponent,
     ModalComponent,
-    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +54,8 @@ import { ProductsServiceService } from 'src/app/Services/products-service.servic
     InputTextModule,
     InputNumberModule,
     InputTextareaModule,
-    FormsModule
+    FormsModule,
+    CardModule
   ],
   providers: [ ProductsServiceService,MessageService, ConfirmationService],
   bootstrap: [AppComponent]
