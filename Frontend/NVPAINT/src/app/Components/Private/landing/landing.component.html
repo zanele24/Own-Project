@@ -1,4 +1,5 @@
 
+<p-toast></p-toast>
 <div class="p-4 bg-white rounded-lg border border-gray-200 shadow-md md:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700 mt-6 ">
     <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 ">
         <div class="max-w-md w-full space-y-8">
@@ -6,17 +7,23 @@
             <img class="mx-auto h-12 w-auto" src="assets/showcase/images/logo.png" style="margin-left: 20%;" alt="Workflow">
             <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
           </div>
-          <form class="form">
+          <form [formGroup]="Form" (ngSubmit)="signin()">
             <div class="mb-6">
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Employee number</label>
-                <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="name@flowbite.com" required>
-              </div>
-              <div class="mb-6">
+                <input type="email" id="email" formControlName="employee_num" [ngClass]="{'is-invalid': submitted && f['employee_num'].errors}"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Employee number" required>
+                   <div *ngIf="submitted && f['employee_num'].errors"class="invalid-feedback">
+                   <div *ngIf="f['employee_num'].errors['required']" style="color: red; font-size: small;"> Employee number is required</div>
+                   </div>
+            </div>
+            <div class="mb-6">
                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Password</label>
-                <input type="password" id="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
-              </div>
+                <input type="password" id="password" formControlName="password" [ngClass]="{'is-invalid': submitted && f['password'].errors}"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="****" required>
+                  <div *ngIf="submitted && f['password'].errors"class="invalid-feedback">
+                  <div *ngIf="f['password'].errors['required']" style="color: red; font-size: small;"> password is required</div>
+                  </div>
+            </div>
             <div>
-              <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-900 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" [routerLink]="['/home']" routerLinkActive="router-link-active" >
+              <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-900 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"   >
                 <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                   <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
@@ -28,18 +35,6 @@
           </form>
         </div>
       </div>
-   
-      <!-- <div class="card w-96 bg-base-100 shadow-xl image-full">
-        <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
-        <div class="card-body">
-          <h2 class="card-title">Shoes!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div class="card-actions justify-end">
-            <button class="btn btn-primary">Buy Now</button>
-          </div>
-        </div>
-      </div> -->
-
 </div>
 
 

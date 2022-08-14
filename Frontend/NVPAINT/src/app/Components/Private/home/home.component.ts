@@ -71,21 +71,33 @@ export class HomeComponent implements OnInit {
   saveData(){
     this.submitted = true
 
-    if(this.Form.invalid)
-    {
-      this.showError();
-      return 
-    }
+    // if(this.Form.invalid)
+    // {
+    //   this.showError();
+    //   return 
+    // }
 
     if(this.productList._id)
     {
+      let product = {
+        // product_name : this.productList.productName,
+        // product_desc: this.productList.productDesc,
+        // Price: this.productList.Price,
+        // Liters: this.productList.Liter,
+        Unit: this.productList.Unit
+      }
+      console.log(this.productList)
       this.confirmationService.confirm({
         message: 'Are you sure you want to Update this product ?',
         header: 'Confirm',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-          this.productDialog = false;
-          this.get()
+          this.productsservice.updateProduct(product,this.productList._id).subscribe(() =>{
+           this.route.navigateByUrl('/home')
+            this.get()
+            this.productDialog = false;
+          })
+          
           
           this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Updated', life: 3000})
         },
@@ -153,7 +165,7 @@ export class HomeComponent implements OnInit {
   editProduct(productList: UpdateModule) {
     this.productList = {...productList};
     this.productDialog = true;
-    console.log(productList)
+    
   }
 
   hideDialog() {

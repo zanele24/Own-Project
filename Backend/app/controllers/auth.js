@@ -5,22 +5,18 @@ const {JWT_SECRET} = require('../config/auth.config');
 const User = require('../models/users');
 
 exports.signup =  (req, res) => {
-    const { name, surname, email, phonenumber, password } = req.body
-    if (!email || !password || !name || !surname || !phonenumber)
-    {
-        return res.status(422).json({error:"please add all the fields"})
-    }
-
-    User.findOne({ email: email })
+    const { name, surname,employee_num, email, phonenumber, password } = req.body
+    User.findOne({ employee_num: employee_num})
         .then((savedUser) => {
             if (savedUser) {
-                return res.status(422).json({ error: "user already exists with that email" })
+                return res.status(422).json({ error: "user already exists with that emplyee number" })
             }
             bycrypt.hash(password,12)
             .then(hashedpassword =>
             {const user = new User({
                 name,
                 surname,
+                employee_num,
                 email,
                 phonenumber,
                 password:hashedpassword
@@ -39,18 +35,19 @@ exports.signup =  (req, res) => {
     });  
  }
 exports.signin = (req,res) =>{
-    const {email,password} = req.body
-    if (!email || !password)
-    {
-        return res.status(422).json({error:"please add email and password"})
-    }
+    const {employee_num,password} = req.body
+    
+    // if (!employee_num || !password)
+    // {
+    //     return res.status(422).json({error:"please add email and password"})
+    // }
 
-    User.findOne({email:email})
+    User.findOne({employee_num:employee_num})
     .then(savedUser =>
         {
             if (!savedUser)
             {
-                return res.status(422).json({error:"Invalid Email or password"})
+                return res.status(422).json({error:"Invalid Employee number or password"})
             }
             bycrypt.compare(password,savedUser.password)
             .then(doMatch =>
@@ -61,7 +58,7 @@ exports.signin = (req,res) =>{
                     }
                     else
                     {
-                        return res.status(422).json({error:"Invalid Email or password"})
+                        return res.status(422).json({error:"Invalid Employee number or password"})
                     }
                
                 })

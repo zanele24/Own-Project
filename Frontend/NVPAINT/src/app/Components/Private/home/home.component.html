@@ -67,7 +67,7 @@
   </table>  
 </div>
 
-<p-dialog [(visible)]="productDialog" [style]="{width: '600px'}" header="Product" [modal]="true" styleClass="p-fluid">
+<!-- <p-dialog [(visible)]="productDialog" [style]="{width: '600px'}" header="Product" [modal]="true" styleClass="p-fluid">
   <form [formGroup]="Form">
     <div class="p-6 space-y-6">
       <div class="grid grid-cols-6 gap-6">
@@ -75,7 +75,7 @@
               <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
               <input type="text" [ngModel]="productList.productName" name="name" id="name" formControlName="product_name" [ngClass]="{'is-invalid': submitted && f['product_name'].errors}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product Name" required>
             <div *ngIf="submitted && f['product_name'].errors"class="invalid-feedback">
-              <div *ngIf="f['product_name'].errors['required']" style="color: red; font-size: small;"> product name is required</div>
+            <div *ngIf="f['product_name'].errors['required']" style="color: red; font-size: small;"> product name is required</div>
             </div>
           </div>
           <div class="col-span-6 sm:col-span-3">
@@ -113,6 +113,43 @@
       <a type="button" class="btn btn-secondary"(click)="saveData()" ><i class="pi pi-check">Save</i></a>
     </div>
   </form>  
+</p-dialog> -->
+
+
+<p-dialog [(visible)]="productDialog" [style]="{width: '600px'}" header="Product" [modal]="true" styleClass="p-fluid">
+  
+    <div class="p-6 space-y-6">
+      <div class="grid grid-cols-6 gap-6">
+          <div class="col-span-6 sm:col-span-3">
+              <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
+              <input type="text" [(ngModel)]="productList.productName" name="name" id="name"  [ngClass]="{'is-invalid': submitted && f['product_name'].errors}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product Name" required>
+  
+          </div>
+          <div class="col-span-6 sm:col-span-3">
+              <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Description</label>
+              <input type="text" [(ngModel)]="productList.productDesc" name="descrption" id="description"   [ngClass]="{'is-invalid': submitted && f['product_desc'].errors}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product Description" required>
+              
+          </div>
+          <div class="col-span-6 sm:col-span-3">
+              <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+              <input  type="text" [(ngModel)]="productList.Price" name="price" id="price"  [ngClass]="{'is-invalid': submitted && f['Price'].errors}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="R 100" required>
+              
+          </div>
+          <div class="col-span-6 sm:col-span-3">
+              <label for="units" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Measurements in Liters</label>
+              <input  type="number" [(ngModel)]="productList.Liter" name="units" id="units"   [ngClass]="{'is-invalid': submitted && f['Liters'].errors}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1-25" required>
+              
+          </div>
+          <div class="col-span-6 sm:col-span-3">
+              <label for="units" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Paints</label>
+              <input  type="number" [(ngModel)]="productList.Unit" name="units" id="units"  [ngClass]="{'is-invalid': submitted && f['Unit'].errors}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1-25" required>
+              
+          </div>
+      </div>
+    </div>
+    <div class="float-right" >
+      <a type="button" class="btn btn-danger-outline" (click)="hideDialog()"><i class="pi pi-times">Cancel</i></a>
+      <a type="button" class="btn btn-secondary"(click)="saveData()" ><i class="pi pi-check">Save</i></a>
+    </div>
+ 
 </p-dialog>
-
-

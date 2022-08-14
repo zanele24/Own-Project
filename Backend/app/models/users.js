@@ -9,6 +9,10 @@ const usersSchema = new mongoose.Schema({
     type: String,
     require: true
   },
+  employee_num:{
+    type:String,
+    require: true
+  },
   email:{
     type:String,
     require: true

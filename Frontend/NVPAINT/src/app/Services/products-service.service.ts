@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Productid } from '../Interface/productid';
-import { Productslist } from '../Interface/productslist';
 import { UpdateModule } from '../update/update.module';
 
 const baseURL = environment.baseURL
@@ -10,7 +9,6 @@ const baseURL = environment.baseURL
   providedIn: 'root'
 })
 export class ProductsServiceService {
-
 
   constructor(private http: HttpClient) { }
   
@@ -26,8 +24,8 @@ export class ProductsServiceService {
     
   }
 
-  updateProduct(id: UpdateModule){
-    return this.http.get(`${baseURL}update/,${id._id}`)
+  updateProduct(product: any,id: any ){
+    return this.http.patch(`${baseURL}update/${id}`,product)
   }
 
   deleteProduct(id:Productid){

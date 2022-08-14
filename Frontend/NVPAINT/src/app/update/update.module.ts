@@ -10,10 +10,10 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class UpdateModule { 
-    _id?: number;
+    _id?: number | null;
     productName?: string;
     productDesc?: string;
-    Price?: number;
+    Price?: number | null;
     Liter?: number;
     Unit?: number;
     createdAt?: Date;
