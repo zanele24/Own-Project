@@ -70,21 +70,14 @@ export class HomeComponent implements OnInit {
   //FUNCTION TO SAVE DATA ON THE DATABASE (SAVE THE PRODUCT)
   saveData(){
     this.submitted = true
-
-    // if(this.Form.invalid)
-    // {
-    //   this.showError();
-    //   return 
-    // }
-
     if(this.productList._id)
     {
       let product = {
-        // product_name : this.productList.productName,
-        // product_desc: this.productList.productDesc,
-        // Price: this.productList.Price,
-        // Liters: this.productList.Liter,
-        Unit: this.productList.Unit
+        productName:this.productList.productName,
+        productDesc:this.productList.productDesc,
+        Price:this.productList.Price,
+        Liter:this.productList.Liter,
+        Unit:this.productList.Unit,
       }
       console.log(this.productList)
       this.confirmationService.confirm({
@@ -99,26 +92,31 @@ export class HomeComponent implements OnInit {
           })
           
           
-          this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Updated', life: 3000})
+          this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product updated', life: 3000})
         },
         reject: () => {
-          this.messageService.add({severity:'error', summary: 'Error', detail: '  Product was not Updated', life: 3000})
+          this.messageService.add({severity:'error', summary: 'Error', detail: '  Product was not updated', life: 3000})
         }
       })
     }
     else{
-       this.productsservice.addProduct(
-       this.Form.value.product_name,
-       this.Form.value.product_desc,
-       this.Form.value.Price ,
-       this.Form.value.Liters,
-       this.Form.value.Unit).subscribe(()=>{
-        this.productDialog = false;
-        this.get()
-      })
-      this.showSuccess();
+      let prod = {
+        productName:this.productList.productName,
+        productDesc:this.productList.productDesc,
+        Price:this.productList.Price,
+        Liter:this.productList.Liter,
+        Unit:this.productList.Unit,
+      }
+      if(!prod.productName){
+        this.productDialog = true;
+      }else{
+          this.productsservice.addProduct(prod).subscribe(()=>{
+          this.productDialog = false;
+          this.get()
+        })
+        this.showSuccess();
+      }
     }
-   
   }
 
 
@@ -149,13 +147,14 @@ export class HomeComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.productsservice.deleteProduct(details).subscribe( ()=>{
+          this.get();
           this.route.navigateByUrl('/home')
 
         })
-        this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Deleted', life: 3000})
+        this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product deleted', life: 3000})
       },
       reject: () => {
-        this.messageService.add({severity:'error', summary: 'Error', detail: '  Product was not Deleted', life: 3000})
+        this.messageService.add({severity:'error', summary: 'Error', detail: '  Product was not deleted', life: 3000})
       }
     })
   }

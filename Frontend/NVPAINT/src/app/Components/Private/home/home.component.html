@@ -5,8 +5,8 @@
 <app-modal></app-modal>
 <div class="dash text-align-center">
          <h2>DASHBOARD</h2>
-    </div>
-    <div class="add">
+  </div>
+  <div class="add">
     <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"  (click)="openNew()" ></button>
   </div>
 <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
@@ -123,27 +123,27 @@
           <div class="col-span-6 sm:col-span-3">
               <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
               <input type="text" [(ngModel)]="productList.productName" name="name" id="name"  [ngClass]="{'is-invalid': submitted && f['product_name'].errors}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product Name" required>
-  
+              <small class="p-error" *ngIf="submitted && !productList.productName">Product Name is required.</small>
           </div>
           <div class="col-span-6 sm:col-span-3">
               <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Description</label>
               <input type="text" [(ngModel)]="productList.productDesc" name="descrption" id="description"   [ngClass]="{'is-invalid': submitted && f['product_desc'].errors}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product Description" required>
-              
+              <small class="p-error" *ngIf="submitted && !productList.productDesc">Product Name is required.</small>
           </div>
           <div class="col-span-6 sm:col-span-3">
               <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
               <input  type="text" [(ngModel)]="productList.Price" name="price" id="price"  [ngClass]="{'is-invalid': submitted && f['Price'].errors}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="R 100" required>
-              
+              <small class="p-error" *ngIf="submitted && !productList.Price">Price is required.</small>
           </div>
           <div class="col-span-6 sm:col-span-3">
               <label for="units" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Measurements in Liters</label>
               <input  type="number" [(ngModel)]="productList.Liter" name="units" id="units"   [ngClass]="{'is-invalid': submitted && f['Liters'].errors}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1-25" required>
-              
+              <small class="p-error" *ngIf="submitted && !productList.Liter">Measurements in Liters is required.</small>
           </div>
           <div class="col-span-6 sm:col-span-3">
               <label for="units" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Paints</label>
               <input  type="number" [(ngModel)]="productList.Unit" name="units" id="units"  [ngClass]="{'is-invalid': submitted && f['Unit'].errors}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1-25" required>
-              
+              <small class="p-error" *ngIf="submitted && !productList.Unit">Number of Paints is required.</small>
           </div>
       </div>
     </div>

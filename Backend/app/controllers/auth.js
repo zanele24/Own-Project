@@ -34,6 +34,7 @@ exports.signup =  (req, res) => {
         })
     });  
  }
+ 
 exports.signin = (req,res) =>{
     const {employee_num,password} = req.body
     
@@ -49,6 +50,8 @@ exports.signin = (req,res) =>{
             {
                 return res.status(422).json({error:"Invalid Employee number or password"})
             }
+            console.log(employee_num)
+            console.log(password)
             bycrypt.compare(password,savedUser.password)
             .then(doMatch =>
                 {

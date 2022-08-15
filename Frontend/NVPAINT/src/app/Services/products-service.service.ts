@@ -12,9 +12,10 @@ export class ProductsServiceService {
 
   constructor(private http: HttpClient) { }
   
-  addProduct(productName: any ,productDesc: any, Price: any,Liter:any,Unit: any ){
-    return this.http.post(baseURL+"add", { productName,productDesc,Price,Liter,Unit })
+  addProduct(product: any ){
+    return this.http.post(baseURL+"add",product)
   }
+
   viewAll(){
    return this.http.get(baseURL+"view")
   }
