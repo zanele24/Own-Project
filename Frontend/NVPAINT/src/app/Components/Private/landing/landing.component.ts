@@ -63,6 +63,6 @@ export class LandingComponent implements OnInit {
 
 
   showError() {
-    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Fields Should not be Empty' });
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Enter your employee number and password!' });
   }
 }
