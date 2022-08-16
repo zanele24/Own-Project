@@ -55,7 +55,7 @@
         </td>
         <td class="py-4 px-6">
             <div class="flex items-center space-x-5">
-              <!-- <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-warning" (click)="viewById(item)"></button> -->
+              <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-warning" (click)="viewProduct(item)" routerLinkActive="router-link-active" ></button>
                 <button pButton pRipple icon="pi pi-edit" class="p-button-rounded p-button-blue" (click)="editProduct(item)" > 
                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                 </button>
@@ -132,7 +132,7 @@
           </div>
           <div class="col-span-6 sm:col-span-3">
               <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-              <input  type="text" [(ngModel)]="productList.Price" name="price" id="price"  [ngClass]="{'is-invalid': submitted && f['Price'].errors}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="R 100" required>
+              <input  type="number" [(ngModel)]="productList.Price" name="price" id="price" mode="currency" currency="ZAR"  locale="en-SA"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="R 100" required>
               <small class="p-error" *ngIf="submitted && !productList.Price">Price is required.</small>
           </div>
           <div class="col-span-6 sm:col-span-3">
@@ -152,4 +152,49 @@
       <a type="button" class="btn btn-secondary"(click)="saveData()" ><i class="pi pi-check">Save</i></a>
     </div>
  
+</p-dialog>
+
+
+
+<p-dialog [(visible)]="viewDialog" [style]="{width: '600px'}" header="View Product" [modal]="true" styleClass="p-fluid">
+  
+  <div class="p-6 space-y-6">
+    <div class="image">
+      <img
+            class="w-15 h-15 rounded-full"
+            src="./assets/showcase/images/paint.jpg"
+            alt="plaster image"
+          />
+    </div>
+    <div class="grid grid-cols-6 gap-6">
+        <div class="col-span-6 sm:col-span-3">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
+            <!-- <input type="text" [(ngModel)]="viewList.productName" name="name" id="name"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product Name" required> -->
+            <h1>{{viewList.productName}}</h1>
+        </div>
+        <div class="col-span-6 sm:col-span-3">
+            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Description</label>
+            <!-- <input  style="border: none;"type="text" [(ngModel)]="viewList.productDesc" name="descrption" id="description" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product Description" required> -->
+            <p>{{viewList.productDesc}}</p>
+        </div>
+        <div class="col-span-6 sm:col-span-3">
+            <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+            <!-- <input  type="number" [(ngModel)]="viewList.Price" name="price" id="price" mode="currency" currency="ZAR"  locale="en-SA"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="R 100" required> -->
+           <h1>{{viewList.Price}}</h1>
+        </div>
+        <div class="col-span-6 sm:col-span-3">
+            <label for="units" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Measurements in Liters</label>
+            <!-- <input  type="number" [(ngModel)]="viewList.Liter" name="units" id="units"   class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1-25" required> -->
+            <h1>{{viewList.Liter}} L</h1>
+        </div>
+        <div class="col-span-6 sm:col-span-3">
+            <label for="units" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Paints</label>
+            <!-- <input  type="number" disabled [(ngModel)]="viewList.Unit" name="units" id="units"   class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1-25" required> -->
+            <h1>{{viewList.Unit}}</h1>
+        </div>
+    </div>
+  </div>
+  <div class="float-right" >
+    <a type="button" class="btn btn-danger-outline" (click)="hideDialog()"><i class="pi pi-times">Cancel</i></a>
+  </div>
 </p-dialog>

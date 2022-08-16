@@ -25,6 +25,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {InputNumberModule} from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CardModule, } from 'primeng/card';
+import { ProductComponent } from './Components/Private/product/product.component';
 
 
 
@@ -36,6 +37,7 @@ import { CardModule, } from 'primeng/card';
     LandingComponent,
     HomeComponent,
     ModalComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,

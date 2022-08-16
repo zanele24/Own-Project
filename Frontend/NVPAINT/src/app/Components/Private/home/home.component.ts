@@ -5,7 +5,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api'; 
 import { Productid } from '../../../Interface/productid';
-import { UpdateModule } from 'src/app/update/update.module';
+import { UpdateModule, ViewModule } from 'src/app/update/update.module';
 import { Router } from '@angular/router';
 
 
@@ -29,9 +29,12 @@ export class HomeComponent implements OnInit {
 
 
   productList: UpdateModule = new UpdateModule; 
+  viewList: ViewModule = new ViewModule; 
+  
   products: any;
   // id : any;
   productDialog: boolean = false;
+  viewDialog: boolean = false;
   submitted = false;
   prod :any;
   
@@ -147,10 +150,12 @@ export class HomeComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.productsservice.deleteProduct(details).subscribe( ()=>{
-          this.get();
-          this.route.navigateByUrl('/home')
+          // this.get();
+          // this.route.navigateByUrl('/home')
+         
 
         })
+        window.location.reload();
         this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product deleted', life: 3000})
       },
       reject: () => {
@@ -167,16 +172,22 @@ export class HomeComponent implements OnInit {
     
   }
 
+  viewProduct(viewList: ViewModule) {
+    this.viewList = {...viewList};
+    this.viewDialog = true; 
+  }
+
+
   hideDialog() {
     this.productDialog = false;
+    this.viewDialog = false;
     this.submitted = false;
 }
 
 
-viewById(productList: UpdateModule){
-  this.productsservice.viewProduct(productList).subscribe(() =>{
-  })
-}
+
+
+
   // delete(id:any){
     
   //   console.log("delete"+ id)
